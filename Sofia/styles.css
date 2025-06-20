@@ -1,0 +1,390 @@
+/* Estilos generales para la fuente y el fondo */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa; /* Fondo gris claro, se mantiene */
+}
+
+/* Definición de variables CSS para la nueva paleta de colores */
+:root {
+    --color-primary: #0c207d; /* Color 1: Azul oscuro */
+    --color-secondary: #3146a5; /* Color 2: Azul medio */
+    --color-accent: #f39200; /* Color 3: Naranja */
+    --color-text-dark: #333333; /* Un color oscuro para textos generales */
+    --color-text-light: #ffffff; /* Color de texto para fondos oscuros */
+}
+
+/* Transiciones para las tarjetas de producto */
+.product-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para botones primarios */
+.btn-primary {
+    background-color: var(--color-primary); /* Usar el color primario */
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: var(--color-secondary); /* Un azul ligeramente más claro en hover */
+}
+
+/* Estilos para botones secundarios (usados en el carrito, por ejemplo) */
+.btn-secondary {
+    background-color: var(--color-accent); /* Usar el color de acento */
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: #e08300; /* Un naranja ligeramente más oscuro en hover */
+}
+
+/* Estilos para botones de peligro (rojo) */
+.btn-danger {
+    background-color: #dc3545; /* Rojo, se mantiene para acciones de peligro */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Estilos de la cabecera (Header) */
+header {
+    background-color: var(--color-primary); /* Fondo del encabezado con color 1 */
+    color: var(--color-text-light); /* Texto del encabezado en blanco */
+}
+
+header h1 {
+    color: var(--color-text-light); /* Título del encabezado en blanco */
+}
+
+header nav a {
+    color: rgba(255, 255, 255, 0.8); /* Enlaces de navegación con un blanco semi-transparente */
+}
+
+header nav a:hover {
+    color: var(--color-accent); /* Color de acento en hover para enlaces de navegación */
+}
+
+/* Botón del carrito en el header */
+#cart-button {
+    background-color: var(--color-secondary); /* Fondo del botón del carrito con color 2 */
+}
+
+#cart-button:hover {
+    background-color: var(--color-accent); /* Color de acento en hover para el botón del carrito */
+}
+
+#cart-button .fa-shopping-cart {
+    color: var(--color-text-light); /* Icono del carrito en blanco */
+}
+
+/* Estilos para el texto de secciones (ej. títulos de productos) */
+#products-section h2, .cart-sidebar h3 {
+    color: var(--color-text-dark); /* Color de texto oscuro para títulos de sección y carrito */
+}
+
+/* Estilos para el pie de página (Footer) */
+footer {
+    background-color: var(--color-primary); /* Fondo del pie de página con color 1 */
+    color: var(--color-text-light);
+}
+
+footer a {
+    color: rgba(255, 255, 255, 0.8); /* Iconos sociales en el pie de página con un blanco semi-transparente */
+}
+
+footer a:hover {
+    color: var(--color-accent); /* Color de acento en hover para iconos sociales */
+}
+
+/* Estilos para la barra lateral del carrito */
+.cart-sidebar {
+    width: 450px;
+    right: -450px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+.cart-sidebar.open {
+    right: 0;
+}
+
+/* Estilos para el overlay (fondo oscuro cuando el carrito está abierto) */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+.overlay.open {
+    display: block;
+}
+
+/* Estilos para el modal de mensajes */
+.modal {
+    z-index: 1050;
+}
+
+/* El indicador de carga ya no es estrictamente necesario sin llamadas a la red,
+    pero lo mantengo para consistencia y si se desea simular cargas. */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.loading-indicator.active {
+    display: flex;
+}
+
+/* Estilos para el spinner de carga */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--color-primary); /* Color primario para el spinner */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animación para el spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Estilos para el Carrusel --- */
+.slick-carousel {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.slick-slide {
+    position: relative;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.slick-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(70%);
+}
+
+/* Estilos para las flechas de navegación (opcional) */
+.slick-prev,
+.slick-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    border: none;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-prev {
+    left: 10px;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+.slick-prev:before {
+    content: '\f104';
+}
+
+.slick-next:before {
+    content: '\f105';
+}
+
+/* Estilos para los puntos de navegación (opcional) */
+.slick-dots {
+    position: absolute;
+    bottom: 20px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    z-index: 10;
+}
+
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: #ccc;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+    outline: none;
+    opacity: 0.7;
+}
+
+.slick-dots li.slick-active button {
+    background: var(--color-primary); /* Color activo del punto con color 1 */
+    opacity: 0.9;
+}
+
+/* Ajustes para el texto del carrusel en pantallas pequeñas */
+@media (max-width: 768px) {
+    .slick-slide .absolute {
+        width: 90%;
+        padding: 0 10px;
+    }
+    .slick-slide h2 {
+        font-size: 2.5rem;
+    }
+    .slick-slide p {
+        font-size: 1rem;
+    }
+    .slick-slide button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    .slick-slide {
+        height: 350px;
+    }
+}
+
+/* --- Estilos para la sección Quiénes Somos, Misión y Visión --- */
+.about-card {
+    border: 1px solid #e0e0e0; /* Un borde sutil para las tarjetas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinea el contenido hacia arriba */
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0; /* Evita que el círculo se encoja */
+}
+
+.about-card h3 {
+    margin-bottom: 1rem;
+    color: var(--color-primary); /* Títulos de la sección "Quiénes Somos" con color primario */
+}
+
+.about-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+}
+
+/* Colores de íconos para cada sección */
+.about-card:nth-child(1) .icon-circle {
+    background-color: #EBF5FB; /* Azul claro */
+    color: var(--color-primary);
+}
+
+.about-card:nth-child(2) .icon-circle {
+    background-color: #E8F8F5; /* Verde claro */
+    color: #28a745; /* Un verde vibrante */
+}
+
+.about-card:nth-child(3) .icon-circle {
+    background-color: #F8F4FF; /* Púrpura claro */
+    color: #6f42c1; /* Un púrpura vibrante */
+}
+
+/* Ajustes responsivos para las tarjetas de "Quiénes Somos" */
+@media (max-width: 768px) {
+    .about-card {
+        padding: 6;
+    }
+    .about-card h3 {
+        font-size: 1.75rem;
+    }
+    .about-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Estilos para las tarjetas de promoción */
+.promo-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.promo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el input del código de descuento */
+#discount-code-input {
+    text-transform: uppercase; /* Asegura que el texto se vea en mayúsculas */
+}
